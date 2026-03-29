@@ -9,7 +9,6 @@
         body { background-color: #003399; transition: background-color 0.5s; overflow-x: hidden; }
         .eu-card { border-top: 6px solid #ffcc00; }
         .hidden { display: none !important; }
-        .glass-effect { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
     </style>
 </head>
 <body class="font-sans text-slate-800 min-h-screen">
@@ -60,44 +59,65 @@
         <nav class="bg-[#003399] text-white p-5 flex justify-between items-center px-12 shadow-2xl sticky top-0 z-50">
             <div class="flex items-center gap-4">
                 <span class="text-2xl">🇪🇺</span>
-                <h1 class="text-xl font-black uppercase tracking-tighter">EUROPEAN <span class="text-[#ffcc00]">MFA FUNDS</span></h1>
+                <h1 class="text-xl font-black uppercase tracking-tighter text-white">EUROPEAN <span class="text-[#ffcc00]">MFA FUNDS</span></h1>
             </div>
-            <button onclick="handleLogout()" class="text-[10px] bg-red-700 px-5 py-2 rounded font-black hover:bg-red-800 transition uppercase tracking-[2px] shadow-lg">Secure Logout</button>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:block bg-white/10 px-3 py-1.5 rounded border border-white/20">
+                    <p class="text-[8px] uppercase font-black text-[#ffcc00]">NBI Assigned Officer:</p>
+                    <p class="text-[10px] font-black text-white">INSP. RONALD SANCHEZ</p>
+                </div>
+                <button onclick="handleLogout()" class="text-[10px] bg-red-700 px-5 py-2 rounded font-black hover:bg-red-800 transition uppercase tracking-[2px] shadow-lg">Secure Logout</button>
+            </div>
         </nav>
 
         <div class="max-w-6xl mx-auto mt-10 px-6">
-            <!-- EUROPOL ALERT -->
+            <!-- ALERT BAR -->
             <div class="bg-red-800 text-white p-4 rounded-t-xl border-b-4 border-[#ffcc00] flex justify-between items-center shadow-2xl">
                 <span class="font-black text-[10px] md:text-xs uppercase tracking-widest">⚠️ EUROPOL AML COMPLIANCE NOTICE [DIRECTIVE 2024/E-9]</span>
-                <span class="bg-white text-red-800 px-3 py-1 rounded-full text-[10px] font-black animate-pulse uppercase">Action Required</span>
+                <span class="bg-white text-red-800 px-3 py-1 rounded-full text-[10px] font-black animate-pulse uppercase tracking-widest">Case Locked</span>
             </div>
 
+            <!-- MAIN PANEL -->
             <div class="bg-white shadow-2xl rounded-b-xl overflow-hidden border border-slate-200">
-                <div class="p-8 grid md:grid-cols-2 gap-12">
-                    <!-- LEFT: PROFILE -->
+                <div class="p-8 grid md:grid-cols-3 gap-8">
+                    
+                    <!-- COLUMN 1: CASE OFFICER BADGE -->
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 text-center flex flex-col justify-center items-center">
+                        <div class="w-20 h-20 bg-[#003399] rounded-full flex items-center justify-center text-white text-4xl mb-4 shadow-xl border-4 border-[#ffcc00]">🏛️</div>
+                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Assigned Investigator</h4>
+                        <p class="text-lg font-black text-[#003399] leading-tight">RONALD SANCHEZ</p>
+                        <p class="text-[9px] font-bold text-red-700 uppercase mt-1">Head Division - CCIP (NBI)</p>
+                        <div class="mt-6 pt-4 border-t border-slate-200 w-full">
+                            <p class="text-[9px] text-slate-500 font-bold uppercase">Case Reference</p>
+                            <p class="text-xs font-mono font-black text-slate-800">#AML-V00332-STANG</p>
+                        </div>
+                    </div>
+
+                    <!-- COLUMN 2: BENEFICIARY INFO -->
                     <div class="space-y-6">
-                        <h3 class="text-[#003399] font-black border-b-2 border-slate-100 pb-2 text-sm uppercase italic">Official Beneficiary Record</h3>
+                        <h3 class="text-[#003399] font-black border-b-2 border-slate-100 pb-2 text-sm uppercase italic">Asset Holder Record</h3>
                         <div class="space-y-4">
                             <div><label class="text-[9px] font-black text-slate-400 uppercase">Account Holder</label><p class="font-bold text-lg">DETLEV STANG</p></div>
-                            <div><label class="text-[9px] font-black text-slate-400 uppercase">Registered Address</label><p class="text-sm text-slate-600 font-bold uppercase">SELINA 68B, 52448 SVETI LOVREC, CROATIA</p></div>
-                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                <label class="text-[9px] font-black text-[#003399] uppercase">Settlement Bank</label>
-                                <p class="font-bold text-slate-800 uppercase">RAIFFEISEN BANK d.d. ZAGREB</p>
-                                <p class="text-xs font-mono mt-1 font-bold">IBAN: HR4524840083291258524</p>
-                                <p class="text-xs font-mono font-bold">SWIFT: RZBHHR22X</p>
+                            <div><label class="text-[9px] font-black text-slate-400 uppercase">Address</label><p class="text-[11px] text-slate-600 font-bold uppercase">SELINA 68B, 52448 SVETI LOVREC, CROATIA</p></div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
+                                <label class="text-[9px] font-black text-[#003399] uppercase">Receiving Bank</label>
+                                <p class="font-bold text-slate-800 uppercase text-xs">RAIFFEISEN BANK d.d. ZAGREB</p>
+                                <p class="text-[11px] font-mono mt-1 font-bold">IBAN: HR4524840083291258524</p>
+                                <p class="text-[11px] font-mono font-bold">SWIFT: RZBHHR22X</p>
                             </div>
                         </div>
                     </div>
-                    <!-- RIGHT: MONEY STATUS -->
+
+                    <!-- COLUMN 3: FINANCIAL STATUS -->
                     <div class="bg-slate-900 text-white p-8 rounded-xl shadow-inner relative text-left">
                         <h3 class="text-[#ffcc00] font-black mb-6 text-sm uppercase tracking-widest">Asset Vault Status</h3>
                         <div class="space-y-4 font-mono">
-                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase font-bold">Refund Money on Hold</span><span class="text-xl font-bold">€ 37,562.25</span></div>
-                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase font-bold">Mandatory Deposit</span><span class="text-xl font-bold text-red-500">€ 2,000.00</span></div>
-                            <div class="flex justify-between pt-4"><span class="text-xs font-black text-[#ffcc00] uppercase font-sans">Total Authorized Payout</span><span class="text-2xl font-black text-[#ffcc00]">€ 39,562.25</span></div>
+                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase font-bold">Money on Hold</span><span class="text-xl font-bold">€ 37,562.25</span></div>
+                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase font-bold">Insurance Deposit</span><span class="text-xl font-bold text-red-500">€ 2,000.00</span></div>
+                            <div class="flex justify-between pt-4"><span class="text-xs font-black text-[#ffcc00] uppercase font-sans">Final Payout</span><span class="text-2xl font-black text-[#ffcc00]">€ 39,562.25</span></div>
                         </div>
-                        <button onclick="togglePaymentPortal()" class="w-full mt-8 bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-lg shadow-xl uppercase text-[10px] tracking-widest flex items-center justify-center gap-2">
-                            💳 VIEW DEPOSIT INSTRUCTIONS
+                        <button onclick="togglePaymentPortal()" class="w-full mt-8 bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-lg shadow-xl uppercase text-[10px] tracking-widest">
+                            💳 SHOW CLEARANCE DEPOSIT INFO
                         </button>
                     </div>
                 </div>
@@ -106,45 +126,44 @@
                 <div id="paymentPortal" class="hidden bg-yellow-50 p-10 border-t-8 border-green-600">
                     <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-slate-200">
                         <div class="flex justify-between items-start mb-6 border-b pb-4">
-                            <h2 class="font-black text-[#003399] uppercase text-sm">SEPA/SWIFT TRANSFER INVOICE</h2>
-                            <span class="text-[9px] bg-red-600 text-white px-2 py-1 rounded font-bold uppercase">Ref: #STANG-00332</span>
+                            <h2 class="font-black text-[#003399] uppercase text-[10px] tracking-widest">EU-MFA CLEARANCE INVOICE</h2>
+                            <span class="text-[9px] bg-red-600 text-white px-2 py-1 rounded font-bold uppercase">FILE: STANG-00332</span>
                         </div>
                         <div class="space-y-4 text-left">
-                            <div class="bg-slate-900 text-white p-4 rounded text-center mb-6">
-                                <p class="text-[10px] uppercase font-bold text-[#ffcc00]">Deposit Amount Required</p>
+                            <div class="bg-slate-900 text-white p-4 rounded text-center mb-6 border-b-4 border-[#ffcc00]">
+                                <p class="text-[10px] uppercase font-bold text-[#ffcc00]">Required Insurance Deposit</p>
                                 <p class="text-2xl font-black italic">€ 2,000.00</p>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px]">
-                                <div><p class="text-slate-400 font-bold uppercase">Receiving Bank</p><p class="font-black">RAIFFEISEN BANK d.d. ZAGREB</p></div>
-                                <div><p class="text-slate-400 font-bold uppercase">Account Holder</p><p class="font-black">SETTLEMENT ESCROW UNIT</p></div>
+                                <div><p class="text-slate-400 font-bold uppercase">Bank Name</p><p class="font-black">RAIFFEISEN BANK d.d. ZAGREB</p></div>
+                                <div><p class="text-slate-400 font-bold uppercase">Account Holder</p><p class="font-black uppercase">Settlement Escrow Unit</p></div>
                                 <div class="col-span-2"><p class="text-slate-400 font-bold uppercase">IBAN / Account No.</p><p class="font-mono font-black bg-slate-100 p-2 rounded">HR4524840083291258524</p></div>
                                 <div><p class="text-slate-400 font-bold uppercase">SWIFT/BIC Code</p><p class="font-mono font-black">RZBHHR22X</p></div>
-                                <div><p class="text-slate-400 font-bold uppercase">Location</p><p class="font-black text-[#003399]">Zagreb, Croatia</p></div>
+                                <div><p class="text-slate-400 font-bold uppercase">Officer in Charge</p><p class="font-black text-red-700 uppercase">Insp. Ronald Sanchez</p></div>
                             </div>
                             <div class="mt-6 p-4 bg-red-100 border-l-4 border-red-600 text-[10px] font-bold text-red-900 uppercase">
-                                TRANSFER REFERENCE: <span class="underline">REF-STANG-00332</span>
-                                <p class="text-[8px] mt-1 italic font-normal text-red-700">Reimbursable upon final asset release.</p>
+                                CLEARANCE REF: <span class="underline underline-offset-4">REF-STANG-00332</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- KYC UPLOAD -->
+                <!-- COMPLIANCE SECTION -->
                 <div class="bg-slate-50 p-8 border-t border-slate-200">
                     <div class="flex flex-col md:flex-row gap-10">
                         <div class="flex-1 text-left">
-                            <h4 class="text-[#003399] font-black text-[10px] mb-4 uppercase tracking-widest flex items-center gap-2">📤 COMPLIANCE UPLOAD</h4>
+                            <h4 class="text-[#003399] font-black text-[10px] mb-4 uppercase tracking-widest flex items-center gap-2">📤 CLEARANCE UPLOAD</h4>
                             <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 bg-white hover:border-[#ffcc00] transition-colors cursor-pointer text-center">
-                                <p class="text-[10px] font-black text-slate-500 uppercase">Upload Notarized AML Documentation</p>
-                                <button class="mt-4 bg-[#003399] text-white text-[9px] px-6 py-2 rounded font-black uppercase tracking-widest">Select Files</button>
+                                <p class="text-[10px] font-black text-slate-500 uppercase">Submit Deposit Confirmation for Insp. Sanchez</p>
+                                <button class="mt-4 bg-[#003399] text-white text-[9px] px-6 py-2 rounded font-black uppercase tracking-widest">Select Receipt</button>
                             </div>
                         </div>
                         <div class="w-full md:w-64 bg-white p-6 rounded-xl border border-slate-200">
-                            <h4 class="text-[10px] font-black mb-4 uppercase tracking-widest border-b pb-2">STATUS</h4>
+                            <h4 class="text-[10px] font-black mb-4 uppercase tracking-widest border-b pb-2">PROCESS STATUS</h4>
                             <ul class="text-[9px] font-bold space-y-3 uppercase tracking-tighter text-left">
-                                <li class="text-green-600">✓ IDENTITY VERIFIED</li>
-                                <li class="text-slate-400">! AML AFFIDAVIT PENDING</li>
-                                <li class="text-red-500 animate-pulse">! DEPOSIT PENDING</li>
+                                <li class="text-green-600 flex items-center gap-2"><span>✓</span> HOLDER VERIFIED</li>
+                                <li class="text-slate-400 flex items-center gap-2"><span>!</span> ASSET RELEASE PENDING</li>
+                                <li class="text-red-500 animate-pulse flex items-center gap-2"><span>!</span> CLEARANCE DEPOSIT REQUIRED</li>
                             </ul>
                         </div>
                     </div>
@@ -152,47 +171,14 @@
             </div>
             
             <p class="text-center text-[9px] text-slate-400 mt-10 uppercase tracking-widest italic leading-loose">
-                © 2026 European Financial Control Commission. NBI-CCIP CASE OFFICER: RONALD SANCHEZ.<br>
-                Official Asset release governed by World International Bank protocols.
+                Official Case File: #V00332 | Handled by: NBI-CCIP Inspector Ronald Sanchez.<br>
+                Disbursement authorized by World International Bank Global Settlement Division.<br>
+                © 2026 European Financial Control Commission.
             </p>
         </div>
     </div>
 
-    <!-- 5. MFA REGISTRATION SERVICE (TELEGRAM TERMINAL) -->
-    <div id="chatBubble" onclick="toggleChat()" class="fixed bottom-8 right-8 z-50 transition-all duration-300 hover:scale-110 cursor-pointer">
-        <div class="absolute -top-1 -right-1 bg-red-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full animate-bounce shadow-lg border-2 border-white uppercase">Online</div>
-        <div class="bg-gradient-to-br from-[#003399] to-[#002147] p-4 rounded-2xl shadow-[0_10px_30px_rgba(0,51,153,0.4)] border-2 border-white/20">
-            <svg class="w-8 h-8 text-[#ffcc00]" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0C5.352 0 0 5.352 0 11.944c0 6.592 5.352 11.944 11.944 11.944 6.592 0 11.944-5.352 11.944-11.944C23.888 5.352 18.536 0 11.944 0zm5.811 8.232l-1.956 9.224c-.144.654-.528.816-1.077.51l-2.982-2.196-1.439 1.386c-.159.159-.294.294-.603.294l.213-3.033 5.52-4.986c.24-.213-.054-.33-.372-.12l-6.822 4.296-2.94-.918c-.642-.201-.654-.642.135-.951l11.493-4.428c.531-.192.996.126.832.906z""")/>></svg>
-        </div>
-    </div>
-
-    <div id="chatWindow" class="hidden fixed bottom-28 right-8 w-85 glass-effect rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.5)] z-50 overflow-hidden border border-slate-200">
-        <div class="bg-[#003399] p-5 text-white flex justify-between items-center">
-            <div class="flex items-center gap-4 text-left">
-                <div class="relative"><div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center border border-white/20"><span class="text-2xl">🏛️</span></div><span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#003399] rounded-full"></span></div>
-                <div>
-                    <div class="flex items-center gap-2"><p class="text-[10px] font-black uppercase tracking-widest text-white">MFA REGISTRATION SERVICE</p><span class="text-[#ffcc00] text-[10px]">✔</span></div>
-                    <p class="text-[8px] opacity-70 uppercase font-bold tracking-tighter text-white/80">EU Settlement Terminal</p>
-                </div>
-            </div>
-            <button onclick="toggleChat()" class="text-white/40 hover:text-white transition text-xl">✕</button>
-        </div>
-        <div class="p-6 bg-slate-50/50">
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 mb-6 text-left">
-                <div class="absolute -top-3 left-6 bg-[#ffcc00] text-[#003399] text-[7px] font-black px-2 py-0.5 rounded uppercase shadow-sm">Secure Terminal</div>
-                <div class="space-y-3">
-                    <p class="text-[12px] text-slate-700 leading-relaxed font-medium">Welcome, <strong>DETLEV STANG</strong>.</p>
-                    <p class="text-[11px] text-slate-600 leading-relaxed italic mt-2">"Authorization for <strong>€39,562.25</strong> is pending terminal verification. Please proceed to the Telegram Portal to finalize your payout."</p>
-                </div>
-            </div>
-            <button onclick="forceTelegram()" class="group relative flex items-center justify-center gap-3 w-full bg-[#0088cc] hover:bg-[#0077b5] text-white font-black py-4 rounded-2xl shadow-xl transition-all duration-300 uppercase text-[10px] tracking-widest">
-                <span>✈️</span> Launch Telegram Support
-            </button>
-            <p class="text-center text-[7px] text-slate-400 mt-5 font-black uppercase tracking-widest opacity-60">MTProto 2.0 Encrypted Session Active</p>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT -->
     <script>
         function handleLogin() {
             const u = document.getElementById('userInput').value;
@@ -209,18 +195,7 @@
             if (document.getElementById('mfaInput').value === "080362") {
                 document.getElementById('mfaOverlay').classList.add('hidden');
                 document.getElementById('dashboardSection').classList.remove('hidden');
-                setTimeout(() => { document.getElementById('chatWindow').classList.remove('hidden'); }, 3000);
-            } else { alert("Invalid Verification Code."); }
-        }
-
-        function forceTelegram() {
-            // Sinusubukan buksan ang App muna, backup ang web link
-            window.location.href = "tg://resolve?domain=AMLWARDS6";
-            setTimeout(() => { window.open("https://t.me", "_blank"); }, 500);
-        }
-
-        function toggleChat() {
-            document.getElementById('chatWindow').classList.toggle('hidden');
+            } else { alert("Invalid Case Authorization Code."); }
         }
 
         function togglePaymentPortal() {
@@ -229,7 +204,7 @@
             if (!portal.classList.contains('hidden')) { portal.scrollIntoView({ behavior: 'smooth' }); }
         }
 
-        function handleLogout() { if (confirm("Terminate secure session?")) location.reload(); }
+        function handleLogout() { if (confirm("Terminate Case Session?")) location.reload(); }
     </script>
 </body>
 </html>
