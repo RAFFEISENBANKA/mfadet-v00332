@@ -9,6 +9,7 @@
         body { background-color: #003399; transition: background-color 0.5s; overflow-x: hidden; }
         .eu-card { border-top: 6px solid #ffcc00; }
         .hidden { display: none !important; }
+        .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body class="font-sans text-slate-800 min-h-screen">
@@ -54,7 +55,7 @@
         </div>
     </div>
 
-    <!-- 3. DASHBOARD SECTION -->
+    <!-- 3. MAIN DASHBOARD SECTION -->
     <div id="dashboardSection" class="hidden w-full bg-slate-100 min-h-screen pb-32">
         <nav class="bg-[#003399] text-white p-5 flex justify-between items-center px-12 shadow-2xl sticky top-0 z-50">
             <div class="flex items-center gap-4">
@@ -65,16 +66,16 @@
         </nav>
 
         <div class="max-w-6xl mx-auto mt-10 px-6">
-            <!-- TOP ALERT -->
+            <!-- EUROPOL ALERT -->
             <div class="bg-red-800 text-white p-4 rounded-t-xl border-b-4 border-[#ffcc00] flex justify-between items-center shadow-2xl">
                 <span class="font-black text-xs uppercase tracking-widest">⚠️ EUROPOL AML COMPLIANCE NOTICE [DIRECTIVE 2024/E-9]</span>
                 <span class="bg-white text-red-800 px-3 py-1 rounded-full text-[10px] font-black animate-pulse">ACTION REQUIRED</span>
             </div>
 
-            <!-- MAIN DATA PANEL -->
+            <!-- BENEFICIARY & ASSET PANEL -->
             <div class="bg-white shadow-2xl rounded-b-xl overflow-hidden border border-slate-200">
                 <div class="p-8 grid md:grid-cols-2 gap-12">
-                    <!-- LEFT: BENEFICIARY INFO -->
+                    <!-- LEFT: PROFILE -->
                     <div class="space-y-6">
                         <h3 class="text-[#003399] font-black border-b-2 border-slate-100 pb-2 text-sm uppercase italic">Official Beneficiary Record</h3>
                         <div class="space-y-4">
@@ -88,59 +89,100 @@
                             </div>
                         </div>
                     </div>
-                    <!-- RIGHT: FINANCIAL STATUS -->
-                    <div class="bg-slate-900 text-white p-8 rounded-xl shadow-inner">
+                    <!-- RIGHT: MONEY STATUS -->
+                    <div class="bg-slate-900 text-white p-8 rounded-xl shadow-inner relative">
                         <h3 class="text-[#ffcc00] font-black mb-6 text-sm uppercase tracking-widest">Asset Vault Status</h3>
                         <div class="space-y-4">
-                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase">Refund Money on Hold</span><span class="font-mono text-xl font-bold">€ 37,562.25</span></div>
-                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase">Mandatory Deposit</span><span class="font-mono text-xl font-bold text-red-500">€ 2,000.00</span></div>
+                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase font-bold">Money on Hold</span><span class="font-mono text-xl font-bold">€ 37,562.25</span></div>
+                            <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-[10px] text-slate-400 uppercase font-bold">Mandatory Deposit</span><span class="font-mono text-xl font-bold text-red-500">€ 2,000.00</span></div>
                             <div class="flex justify-between pt-4"><span class="text-xs font-black text-[#ffcc00] uppercase">Total Authorized Payout</span><span class="font-mono text-2xl font-black text-[#ffcc00]">€ 39,562.25</span></div>
                         </div>
-                        <button onclick="window.location.href='payment-instructions.html'" class="w-full mt-8 bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-lg shadow-xl uppercase text-[10px] tracking-widest">
-                            💳 SECURE DEPOSIT PORTAL
+                        <button onclick="togglePaymentPortal()" class="w-full mt-8 bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-lg shadow-xl uppercase text-[10px] tracking-widest flex items-center justify-center gap-2">
+                            💳 PROCEED TO DEPOSIT PORTAL
                         </button>
                     </div>
                 </div>
 
-                <!-- DOCUMENT UPLOAD -->
+                <!-- 4. DYNAMIC PAYMENT INSTRUCTIONS (HIDDEN BY DEFAULT) -->
+                <div id="paymentPortal" class="hidden bg-yellow-50 p-10 border-t-8 border-green-600">
+                    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                        <div class="flex justify-between items-start mb-6 border-b pb-4">
+                            <h2 class="font-black text-[#003399] uppercase text-sm">SEPA/SWIFT TRANSFER INVOICE</h2>
+                            <span class="text-[9px] bg-red-600 text-white px-2 py-1 rounded font-bold">REF: #STANG-00332</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-slate-900 text-white p-4 rounded text-center mb-6">
+                                <p class="text-[10px] uppercase font-bold text-[#ffcc00]">Amount Required</p>
+                                <p class="text-2xl font-black">€ 2,000.00</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-[11px]">
+                                <div><p class="text-slate-400 font-bold uppercase">Bank Name</p><p class="font-black">RAFFEISEN BANK d.d ZAGREB</p></div>
+                                <div><p class="text-slate-400 font-bold uppercase">Account Holder</p><p class="font-black">SETTLEMENT ESCROW UNIT</p></div>
+                                <div class="col-span-2"><p class="text-slate-400 font-bold uppercase">IBAN / Account No.</p><p class="font-mono font-black bg-slate-100 p-2 rounded">HR4524840083291258524</p></div>
+                                <div><p class="text-slate-400 font-bold uppercase">SWIFT/BIC Code</p><p class="font-mono font-black italic">RZBHHR22X</p></div>
+                                <div><p class="text-slate-400 font-bold uppercase">Location</p><p class="font-black italic">Zagreb, Croatia</p></div>
+                            </div>
+                            <div class="mt-6 p-3 bg-red-100 border-l-4 border-red-600 text-[10px] font-bold text-red-900 uppercase">
+                                MUST INCLUDE REFERENCE: <span class="underline">REF-STANG-00332</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DOCUMENT UPLOAD PORTAL -->
                 <div class="bg-slate-50 p-8 border-t border-slate-200">
                     <div class="flex flex-col md:flex-row gap-10">
                         <div class="flex-1">
-                            <h4 class="text-[#003399] font-black text-[10px] mb-4 uppercase tracking-widest">📤 SUBMISSION PORTAL</h4>
-                            <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 bg-white text-center">
-                                <p class="text-[10px] font-black text-slate-500 uppercase">Drop Notarized Documents Here</p>
-                                <button class="mt-4 bg-[#003399] text-white text-[9px] px-6 py-2 rounded font-black uppercase">Browse Files</button>
+                            <h4 class="text-[#003399] font-black text-[10px] mb-4 uppercase tracking-widest flex items-center gap-2">📤 DOCUMENT SUBMISSION</h4>
+                            <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 bg-white text-center hover:border-[#ffcc00] transition-colors">
+                                <p class="text-[10px] font-black text-slate-500 uppercase">Upload Notarized AML Affidavit</p>
+                                <button class="mt-4 bg-[#003399] text-white text-[9px] px-6 py-2 rounded font-black uppercase tracking-widest">Browse Device</button>
                             </div>
                         </div>
                         <div class="w-full md:w-64 bg-white p-6 rounded-xl border border-slate-200">
-                            <h4 class="text-[10px] font-black mb-4 uppercase">CLEARANCE</h4>
+                            <h4 class="text-[10px] font-black mb-4 uppercase tracking-widest border-b pb-2">STATUS</h4>
                             <ul class="text-[9px] font-bold space-y-3">
-                                <li class="text-green-600">✓ ID VERIFIED</li>
-                                <li class="text-slate-400">! AML AFFIDAVIT PENDING</li>
-                                <li class="text-slate-400">! DEPOSIT PENDING</li>
+                                <li class="text-green-600 flex items-center gap-2"><span>✓</span> ID VERIFIED</li>
+                                <li class="text-slate-400 flex items-center gap-2"><span>!</span> AML AFFIDAVIT PENDING</li>
+                                <li class="text-red-500 flex items-center gap-2 animate-pulse"><span>!</span> DEPOSIT PENDING</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <p class="text-center text-[9px] text-slate-400 mt-10 uppercase tracking-widest italic leading-loose">
+                © 2026 European Financial Control Commission. Case Handled by NBI Ronald Sanchez.<br>
+                Official Asset release governed by World International Bank protocols.
+            </p>
         </div>
     </div>
 
-    <!-- LIVE CHAT SYSTEM -->
-    <div id="chatBubble" class="fixed bottom-8 right-8 cursor-pointer z-50">
-        <div class="bg-[#003399] p-4 rounded-full shadow-2xl border-4 border-white"><span class="text-2xl">💬</span></div>
-    </div>
+    <!-- 5. TELEGRAM LIVE SUPPORT -->
+    <a href="https://t.me" target="_blank" id="chatBubble" class="fixed bottom-8 right-8 z-50 cursor-pointer">
+        <div class="absolute -top-2 -right-1 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce">1</div>
+        <div class="bg-[#0088cc] p-4 rounded-full shadow-2xl border-4 border-white hover:scale-110 transition-transform">
+            <span class="text-3xl">✈️</span>
+        </div>
+    </a>
+
     <div id="chatWindow" class="hidden fixed bottom-28 right-8 w-80 bg-white rounded-2xl shadow-2xl z-50 overflow-hidden border border-slate-200">
-        <div class="bg-[#003399] p-4 text-white font-black text-[10px] uppercase">Agent Sanchez (CCIP)</div>
-        <div class="h-64 p-4 bg-slate-50 overflow-y-auto">
-            <div class="bg-white p-3 rounded-lg border text-[11px] text-slate-700 leading-relaxed shadow-sm">
-                Hello <strong>DETLEV STANG</strong>. Your file <strong>#V00332</strong> is ready. Please complete the €2,000 deposit to release <strong>€39,562.25</strong>.
+        <div class="bg-[#003399] p-4 text-white flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">👨‍💼</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">Agent Sanchez</span>
             </div>
+            <button onclick="document.getElementById('chatWindow').classList.add('hidden')" class="text-white opacity-50 hover:opacity-100">✕</button>
         </div>
-        <div class="p-3 border-t bg-white"><input type="text" placeholder="Type..." class="w-full p-2 text-[10px] bg-slate-100 rounded outline-none"></div>
+        <div class="p-6 bg-slate-50 text-center">
+            <p class="text-[11px] text-slate-600 italic mb-6">"Account #V00332 requires final clearance. Connect to the encrypted Telegram terminal to finalize."</p>
+            <a href="https://t.me" target="_blank" class="block w-full bg-[#0088cc] text-white font-black py-4 rounded-lg shadow-xl uppercase text-[10px] tracking-widest flex items-center justify-center gap-2">
+                <span>✈️</span> CHAT ON TELEGRAM
+            </a>
+        </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- SCRIPTS -->
     <script>
         function handleLogin() {
             const u = document.getElementById('userInput').value;
@@ -159,17 +201,21 @@
                 document.getElementById('dashboardSection').classList.remove('hidden');
                 setTimeout(() => document.getElementById('chatWindow').classList.remove('hidden'), 3000);
             } else {
-                alert("Invalid MFA Code.");
+                alert("Invalid Code.");
             }
+        }
+
+        function togglePaymentPortal() {
+            document.getElementById('paymentPortal').classList.toggle('hidden');
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
         function handleLogout() {
-            if (confirm("Logout of secure session?")) {
-                location.reload();
-            }
+            if (confirm("Terminate secure session?")) location.reload();
         }
 
-        document.getElementById('chatBubble').addEventListener('click', () => {
+        document.getElementById('chatBubble').addEventListener('click', (e) => {
+            e.preventDefault();
             document.getElementById('chatWindow').classList.toggle('hidden');
         });
     </script>
